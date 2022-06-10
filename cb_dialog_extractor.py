@@ -332,7 +332,7 @@ class CBDialogExtractor:
         '''Main Method'''
         rpyfilepaths = self.get_file_paths()
 
-        self.log(message='Starting dialog extraction...\n', verbose_level_of_message=1)
+        self.log(message='\nStarting dialog extraction...', verbose_level_of_message=1)
 
         current_file_num = 1
         for rpyfilepath in rpyfilepaths:
