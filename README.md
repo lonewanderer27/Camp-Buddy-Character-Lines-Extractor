@@ -3,7 +3,7 @@
 # About
 
 Camp Buddy Dialog Extractor is a tool that extracts dialog from Camp Buddy and Camp Buddy Scoutmasters Edition.
-It can also be embedded inside another program sa library.
+It can also be embedded inside another program by using its class.
 
 # Prerequisite
 Download and use [Shizmob's rpatool](https://github.com/Shizmob/rpatool) to extract Camp Buddy assets to a folder.
