@@ -157,7 +157,7 @@ class CBDialogExtractor:
             if verbose_level_of_message == 3 or verbose_level_of_message == 1:
                 print(message)
 
-    def valid_parameters(self) -> None:
+    def valid_parameters(self) -> bool:
         '''Raises ValueError when one of the parameters are invalid'''
 
         if not self.source_directory:
@@ -181,22 +181,28 @@ class CBDialogExtractor:
             raise ValueError('Only one character is allowed as delimeter')
         if len(self.header) != 2:
             raise ValueError('Header columns must be 2')
+        
+        # Return True at the end since all parameters passed checks
+        return True
 
     def calculate_progress(self, current_file_num: int) -> tuple:
+        '''Returns the current progress percentage'''
         percentage = current_file_num / self.total_amount_of_rpyfiles
         percentage *= 100
         percentage = round(percentage, 2)
         int_percentage = int(percentage)
         return percentage, int_percentage
 
-    def calculate_dialog_part_stats(self, part_num: int):
+    def calculate_dialog_part_stats(self, part_num: int) -> float:
+        '''Returns the percentage of a character dialog in stats'''
         percentage = part_num / self.total_amount_of_dialogs
         percentage *= 100
         percentage = round(percentage, 2)
         return percentage
     
-    def get_filename_from_path(self, rpapath: str) -> str:
-        return ntpath.basename(rpapath)
+    def get_filename_from_path(self, path: str) -> str:
+        '''Returns the filename from path'''
+        return ntpath.basename(path)
 
     def get_absolute_file_path(self, file_dir_path: str, filename: str) -> str:
         '''Returns the relative path, given the directory and filename'''
@@ -223,7 +229,7 @@ class CBDialogExtractor:
             text_lines_stripped.append(text_line.strip())
         return text_lines_stripped
 
-    def extract_dialogs_from_file(self, rpyfilepath: str, current_file_num: int):
+    def extract_dialogs_from_file(self, rpyfilepath: str, current_file_num: int) -> None:
         '''Extracts character dialogs from a file then outputs them into the dialog dictionary'''
 
         # OPEN THE FILE
@@ -276,7 +282,7 @@ class CBDialogExtractor:
             except:
                 pass
 
-    def export_dialogs_to_directory(self):
+    def export_dialogs_to_directory(self) -> None:
         '''Exports the dialogs to individual csv files to a destination directory'''
 
         # For each character in dialogs dictionary
@@ -292,7 +298,7 @@ class CBDialogExtractor:
 
             file.close()    # Close the file
 
-    def export_dialogs_to_file(self):
+    def export_dialogs_to_file(self) -> None:
         '''Exports dialogs to a destination csv file'''
 
         # Create a new csv file
@@ -308,11 +314,12 @@ class CBDialogExtractor:
 
         file.close()    # Close the file
 
-    def get_stats(self):
+    def get_stats(self) -> tuple:
+        '''Returns the stats'''
         self.stats = {
             'Game': self.game_aliases[self.game],
             'Total .rpy Files': self.total_amount_of_rpyfiles,
-            'Total Dialog Lines': self.total_amount_of_dialogs,
+            'Total Dialog Lines': self.total_amount_of_dialogs
         }
 
         for char in self.dialogs[self.game]:
@@ -326,7 +333,7 @@ class CBDialogExtractor:
             message += f'{key}: {self.stats[key]}\n'
         self.stats_str = message
 
-        return self.stats
+        return self.stats, self.stats_str
 
     def extract(self) -> None:
         '''Main Method'''
@@ -356,6 +363,12 @@ class CBDialogExtractor:
         self.log(message=f'\n{self.stats_str}', verbose_level_of_message=1)
 
 def execute_as_script():
+    '''
+    Allows the program to be executed in a command line environment. 
+    And also parses the arguments / parameters then passes it to the constructor, then executes the extraction.
+    
+    Do not use this function in a program, construct an object from class CBDialogExtractor then extract()
+    '''
     # FOR COMMAND LINE EXECUTION!
 
     parser = argparse.ArgumentParser(
@@ -388,6 +401,7 @@ def execute_as_script():
         config['header'], 
         config['delimeter'], 
         config['verbose_level'])
+
     cb_dialog_extractor.extract()
 
 execute_as_script()
