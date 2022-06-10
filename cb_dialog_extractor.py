@@ -365,7 +365,7 @@ class CBDialogExtractor:
 def execute_as_script():
     '''
     Allows the program to be executed in a command line environment. 
-    And also parses the arguments / parameters then passes it to the constructor, then executes the extraction.
+    Parses the arguments / parameters then passes it to the constructor, then executes the extraction.
     
     Do not use this function in a program, construct an object from class CBDialogExtractor then extract()
     '''
