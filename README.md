@@ -16,25 +16,37 @@ cbdialogextractor.extract()
 ```
 ### Extract Taiga's dialogs from Camp Buddy:
 ```
-cbdialogextractor = CBDialogExtractor(source_directory='folder that contains .rpy files', game=1, chosen_chars=['t'], destination_file='Taiga_Dialogs.csv')
+cbdialogextractor = CBDialogExtractor(
+                        source_directory='folder that contains .rpy files', 
+                        game=1, chosen_chars=['t'], 
+                        destination_file='Taiga_Dialogs.csv')
 
 cbdialogextractor.extract()
 ```
 ### Extract Taiga and Keitaro dialogs from Camp Buddy:
 ```
-cbdialogextractor = CBDialogExtractor(source_directory='folder that contains .rpy files', game=1, chosen_chars=['k','t'], destination_file='Keitaro_&_Taiga_Dialogs.csv')
+cbdialogextractor = CBDialogExtractor(
+                        source_directory='folder that contains .rpy files', 
+                        game=1, chosen_chars=['k','t'], 
+                        destination_file='Keitaro_&_Taiga_Dialogs.csv')
 
 cbdialogextractor.extract()
 ```
 ### Extract Yoshinori's dialogs from Camp Buddy Scoutmasters Edition:
 ```
-cbdialogextractor = CBDialogExtractor(source_directory='folder that contains .rpy files', game=2, chosen_chars=['yo'], destination_file='Yoshinori_Dialogs.csv')
+cbdialogextractor = CBDialogExtractor(
+                        source_directory='folder that contains .rpy files', 
+                        game=2, chosen_chars=['yo'], 
+                        destination_file='Yoshinori_Dialogs.csv')
 
 cbdialogextractor.extract()
 ```
 ### Extract Yoshinori and Aiden dialogs from Camp Buddy Scoutmasters Edition:
 ```
-cbdialogextractor = CBDialogExtractor(source_directory='folder that contains .rpy files', game=2, chosen_chars=['yo', 'a'], destination_file='Yoshinori_&_Aiden_Dialogs.csv')
+cbdialogextractor = CBDialogExtractor(
+                        source_directory='folder that contains .rpy files', 
+                        game=2, chosen_chars=['yo', 'a'], 
+                        destination_file='Yoshinori_&_Aiden_Dialogs.csv')
 
 cbdialogextractor.extract()
 ```
