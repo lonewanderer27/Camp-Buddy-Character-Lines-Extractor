@@ -365,7 +365,7 @@ def execute_as_script():
     parser.add_argument('source_directory', type=str, help='Folder Containing .rpy Files')
     parser.add_argument('game', type=int, help='1 = Camp Buddy, 2 = Camp Buddy Scoutmasters Edition')
     parser.add_argument('chosen_chars', help='Characters to extract dialogs of', type=str, nargs='*')
-    parser.add_argument('-r', '--exclude_roleplay_dialogs', default=True, help='Exclude roleplay dialogs')
+    parser.add_argument('-r', '--exclude_roleplay_dialogs', default=True, type=lambda x: (str(x).lower() == 'true'), help='Exclude roleplay dialogs')
     parser.add_argument('-e', '--export_to_file', default=True, type=lambda x: (str(x).lower() == 'true'), help='Export the dialogs to file. If False then dialogs would be exported to directory.')   
     parser.add_argument('-d', '--destination_file', help='Export destination file path. Used if export_to_file is True. Ignored if export_to_file is False.')
     parser.add_argument('-D', '--destination_directory', help='Export destination directory. Used if export_to_file is False. Ignored if export_to_file is True.')
