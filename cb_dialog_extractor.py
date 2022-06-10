@@ -171,10 +171,10 @@ class CBDialogExtractor:
         for char in self.chosen_chars:
             if char not in self.chars_aliases:
                 raise ValueError("Chosen game character alias doesn't exist in character aliases")
-        if self.export_to_file == True:
+        if self.export_to_file:
             if self.destination_file == None:
                 raise ValueError('Destination file not specified')
-        elif self.export_dialogs_to_directory:
+        else:
             if self.destination_directory == None:
                 raise ValueError('Destination directory not specified')
         if len(self.delimeter) > 1:
@@ -366,7 +366,7 @@ def execute_as_script():
     parser.add_argument('game', type=int, help='1 = Camp Buddy, 2 = Camp Buddy Scoutmasters Edition')
     parser.add_argument('chosen_chars', help='Characters to extract dialogs of', type=str, nargs='*')
     parser.add_argument('-r', '--exclude_roleplay_dialogs', default=True, help='Exclude roleplay dialogs')
-    parser.add_argument('-e', '--export_to_file', type=bool, default=True, help='Export the dialogs to file. If False then dialogs would be exported to directory.')
+    parser.add_argument('-e', '--export_to_file', default=True, type=lambda x: (str(x).lower() == 'true'), help='Export the dialogs to file. If False then dialogs would be exported to directory.')   
     parser.add_argument('-d', '--destination_file', help='Export destination file path. Used if export_to_file is True. Ignored if export_to_file is False.')
     parser.add_argument('-D', '--destination_directory', help='Export destination directory. Used if export_to_file is False. Ignored if export_to_file is True.')
     parser.add_argument('-H', '--header', type=str, nargs='*', default=['name', 'dialog'], help='Header columns')
@@ -375,6 +375,7 @@ def execute_as_script():
 
     args = parser.parse_args()
     config = vars(args)
+    pprint(config, indent=2)
 
     cb_dialog_extractor = CBDialogExtractor(
         config['source_directory'], 
