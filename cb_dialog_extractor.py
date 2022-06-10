@@ -139,12 +139,12 @@ class CBDialogExtractor:
             1: {},  # Camp Buddy
             2: {}   # Camp Buddy Scoutmasters Edition
         }
-        self.total_amount_of_rpyfiles = 0
-        self.total_amount_of_dialogs = 0
-        self.stats = {}
-        self.stats_str = ''
+        self.total_amount_of_rpyfiles = 0   # TOTAL AMOUNT OF .rpy FILES
+        self.total_amount_of_dialogs = 0    # TOTAL AMOUNT OF DIALOGS
+        self.stats = {}                     # STATS IN DICTIONARY FORM
+        self.stats_str = ''                 # STATS IN STRING FORM
 
-        self.valid_parameters()
+        self.valid_parameters()             # CHECKS IF THE PARAMETERS ARE VALID
 
     def log(self, message: str, verbose_level_of_message: int) -> None:
         '''Prints the status of the extractor to stdout'''
@@ -288,34 +288,35 @@ class CBDialogExtractor:
     def export_dialogs_to_directory(self) -> None:
         '''Exports the dialogs to individual csv files to a destination directory'''
 
-        # For each character in dialogs dictionary
+        # FOR EACH CHARACTER IN DIALOGS DICTIONARY
         for char in self.dialogs[self.game]:
 
-            # Create a new csv file
+            #   CREATE A NEW .CSV FILE AT DESTINATION DIRECTORY
             file = open(self.get_absolute_file_path(self.destination_directory, self.chars_aliases[char])+'.csv', 'w')
+            #   CREATE A WRITER, SETS THE DELIMETER TO USER'S CHOICE
             writer = csv.writer(file, delimiter=self.delimeter)
-            writer.writerow(self.header)    # Write the header
+            writer.writerow(self.header)    # WRITE THE HEADER COLUMNS
             if len(self.dialogs[self.game]) != 0:
-                for dialog in self.dialogs[self.game][char]:                # For each dialog of the character
-                    writer.writerow([self.chars_aliases[char], dialog])     # Write each dialog in a row
+                for dialog in self.dialogs[self.game][char]:                # FOR EACH DIALOG OF THE CHARACTER
+                    writer.writerow([self.chars_aliases[char], dialog])     # WRITE THE CHARACTER'S NAME THEN THE DIALOG IN THE ROW
 
-            file.close()    # Close the file
+            file.close()    # CLOSE THE FILE
 
     def export_dialogs_to_file(self) -> None:
         '''Exports dialogs to a destination csv file'''
 
-        # Create a new csv file
+        # CREATE A NEW .CSV FILE AT DESTINATION DIRECTORY
         file = open(self.destination_file, 'w')
         writer = csv.writer(file, delimiter=self.delimeter)
-        writer.writerow(self.header)    # Write the header columns
+        writer.writerow(self.header)    # WRITE THE HEADER COLUMNS
 
-        # For each character in dialogs dictionary
+        # FOR EACH CHARACTER IN DIALOGS DICTIONARY
         for char in self.dialogs[self.game]:
             if len(self.dialogs[self.game]) != 0:
-                for dialog in self.dialogs[self.game][char]:                # For each dialog of the character
-                    writer.writerow([self.chars_aliases[char], dialog])     # Write each dialog in a row
+                for dialog in self.dialogs[self.game][char]:                # FOR EACH DIALOG OF THE CHARACTER
+                    writer.writerow([self.chars_aliases[char], dialog])     # WRITE THE CHARACTER'S NAME THEN THE DIALOG IN THE ROW
 
-        file.close()    # Close the file
+        file.close()    # CLOSE THE FILE
 
     def get_stats(self) -> tuple:
         '''Returns the stats'''
@@ -340,7 +341,7 @@ class CBDialogExtractor:
         return self.stats, self.stats_str
 
     def extract(self) -> None:
-        '''Main Method'''
+        '''Main Method. Execute this after constructing an object from CBDialogExtractor class'''
 
         rpyfilepaths = self.get_file_paths()
 
@@ -372,7 +373,7 @@ def execute_as_script():
     Allows the program to be executed in a command line environment. 
     Parses the arguments / parameters then passes it to the constructor, then executes the extraction.
     
-    Do not use this function in a program, construct an object from class CBDialogExtractor then extract()
+    Do not use this function in a program, construct an object from CBDialogExtractor class then execute extract()
     '''
 
     parser = argparse.ArgumentParser(
