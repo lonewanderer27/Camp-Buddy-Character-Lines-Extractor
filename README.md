@@ -41,35 +41,35 @@ cbdialogextractor.extract()
 
 # Class Parameters
 
-param   source_directory:           Folder Containing .rpy Files
-type    source_directory:           (str)
+param   source_directory:           Folder Containing .rpy Files  
+type    source_directory:           (str)  
 
-param   game:                       1 = Camp Buddy, 2 = Camp Buddy Scoutmasters Edition
-type    game:                       (int)   
+param   game:                       1 = Camp Buddy, 2 = Camp Buddy Scoutmasters Edition  
+type    game:                       (int)    
 
-param   chosen_chars:               Characters to extract dialogs of. Refer to chars_aliases dictionary for the alias of each character.
+param   chosen_chars:               Characters to extract dialogs of. Refer to chars_aliases dictionary for the alias of each character.  
 type    chosen_chars:               (list)
 
 param   exclude_roleplay_dialogs:   Exclude roleplay dialogs. Default is True
 type    exclude_roleplay_dialogs:   (bool)
 
-param   export_to_file:             Export the dialogs to file. Default is True. If False then dialogs would be exported to directory.
+param   export_to_file:             Export the dialogs to file. Default is True. If False then dialogs would be exported to directory.  
 type    export_to_file:             (bool)
 
-param   destination_file:           Export destination file path. Used if export_to_file param is True. Ignored if export_to_file param is False.
+param   destination_file:           Export destination file path. Used if export_to_file param is True. Ignored if export_to_file param is False.  
 type    destination_file:           (str)
 
-param   destination_directory:      Export destination directory. Used if export_to_file param is False. Ignored if export_to_file param is True.
+param   destination_directory:      Export destination directory. Used if export_to_file param is False. Ignored if export_to_file param is True.  
 type    destination_directory:      (str)
 
-param   header:                     Header columns. Default is ['name', 'dialog']
+param   header:                     Header columns. Default is ['name', 'dialog']  
 type    header:                     (list)
 
-param   delimeter:                  Symbol to separate the character name and their dialog. Default is ;
+param   delimeter:                  Symbol to separate the character name and their dialog. Default is ;  
 type    delimeter:                  (str)
 
-param   verbose_level:              0 = no output to terminal, 1 = shows message when dialogs extraction has started and finished and where it was saved, 2 = shows the percentage progress and the current file being worked on, 3 = shows the character name and their dialog in real time as they get extracted. Default is 2
+param   verbose_level:              0 = no output to terminal, 1 = shows message when dialogs extraction has started and finished and where it was saved, 2 = shows the percentage progress and the current file being worked on, 3 = shows the character name and their dialog in real time as they get extracted. Default is 2  
 type    verbose_level:              (int)
 
-param   cb_toolbox_window:          Camp Buddy Toolbox PySimpleGUI Window object. Only used when embedded in Camp Buddy Toolbox program. Default is None.
+param   cb_toolbox_window:          Camp Buddy Toolbox PySimpleGUI Window object. Only used when embedded in Camp Buddy Toolbox program. Default is None.  
 type    cb_toolbox_window:          (object)
