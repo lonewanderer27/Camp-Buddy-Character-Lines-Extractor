@@ -18,16 +18,17 @@ usage: cb_dialog_extractor.py [-h] [-r EXCLUDE_ROLEPLAY_DIALOGS] [-e EXPORT_TO_F
 | source_directory    | Folder Containing .rpy Files                       |
 | game                | 1 = Camp Buddy 2 = Camp Buddy Scoutmasters Edition |
 | chosen_chars        | Characters to extract dialogs of                   |
-| Optional Argument              | Description                                                                                                                                                                                                                                                                                              |
-|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| -h, --help                     | show this help message and exit                                                                                                                                                                                                                                                                          |
-| -r, --exclude_roleplay_dialogs | Exclude roleplay dialogs <br>(default: True)                                                                                                                                                                                                                                                             |
-| -e, --export_to_file           | Export the dialogs to file. If False then dialogs would be exported to directory<br>(default: True)                                                                                                                                                                                                      |
-| -d, --destination_file         | Export destination file path. Used if export_to_file is True. Ignored if export_to_file is False<br>(default: None)                                                                                                                                                                                      |
-| -D, --destination_directory    | Export destination directory. Used if export_to_file is False. Ignored if export_to_file is True<br>(default: None)                                                                                                                                                                                      |
-| -H, --header                   | Header columns (default: ['name', 'dialog'])                                                                                                                                                                                                                                                             |
-| -m, --delimeter                | Symbol to separate the character name and their dialog (default: ;)                                                                                                                                                                                                                                      |
-| -v, --verbose_level            | 0 = no output to terminal<br>1 = shows message when dialogs extraction has started and finished and where it was saved<br>2 = shows the percentage progress and the current file being worked on<br>3 = shows the character name and their dialog in real time as they get extracted<br><br>(default: 2) |
+
+| Optional Argument | Description |
+|---|---|
+| -h, --help | show this help message and exit |
+| -r, --exclude_roleplay_dialogs | Exclude roleplay dialogs <br>(default: True) |
+| -e, --export_to_file | Export the dialogs to file. If False then dialogs would be exported to directory<br>(default: True) |
+| -d, --destination_file | Export destination file path. Used if export_to_file is True. Ignored if export_to_file is False<br>(default: None) |
+| -D, --destination_directory | Export destination directory. Used if export_to_file is False. Ignored if export_to_file is True<br>(default: None) |
+| -H, --header | Header columns (default: ['name', 'dialog']) |
+| -m, --delimeter | Symbol to separate the character name and their dialog (default: ;) |
+| -v, --verbose_level | 0 = no output to terminal<br>1 = shows message when dialogs extraction has started and finished and where it was saved<br>2 = shows the percentage progress and the current file being worked on<br>3 = shows the character name and their dialog in real time as they get extracted<br><br>(default: 2) |
 
 # Library Usage:
 ### Extract Keitaro's dialogs from Camp Buddy:
