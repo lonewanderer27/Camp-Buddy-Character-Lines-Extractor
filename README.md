@@ -7,9 +7,9 @@ It can also be embedded inside another program sa library.
 
 # Command Line Usage
 ```
-usage: cb_dialog_extractor.py [-h] [-r EXCLUDE_ROLEPLAY_DIALOGS] [-e EXPORT_TO_FILE] [-d DESTINATION_FILE] [-D DESTINATION_DIRECTORY]<br>
-                              [-H [HEADER [HEADER ...]]] [-m DELIMETER] [-v VERBOSE_LEVEL]<br>
-                              source_directory game [chosen_chars [chosen_chars ...]]<br>
+usage: cb_dialog_extractor.py [-h] [-r EXCLUDE_ROLEPLAY_DIALOGS] [-e EXPORT_TO_FILE] [-d DESTINATION_FILE] [-D DESTINATION_DIRECTORY]
+                              [-H [HEADER [HEADER ...]]] [-m DELIMETER] [-v VERBOSE_LEVEL]
+                              source_directory game [chosen_chars [chosen_chars ...]]
 ```
 
 ### Options
