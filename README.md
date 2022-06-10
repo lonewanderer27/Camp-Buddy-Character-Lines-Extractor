@@ -39,7 +39,7 @@ cbdialogextractor = CBDialogExtractor(source_directory='folder that contains .rp
 cbdialogextractor.extract()
 ```
 
-# Class Parameters
+# Parameters
 | Parameter                | Type   | Description                                                                                                                                                                                                                                                                                                |
 |--------------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | source_directory         | str    | Folder Containing .rpy Files                                                                                                                                                                                                                                                                               |
