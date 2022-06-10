@@ -1,4 +1,4 @@
-# Camp Buddy Dialog Extractor - Extract dialogs from Camp Buddy & Camp Buddy Scoutmasters Edition
+# Camp Buddy Dialog Extractor
 
 # About
 
