@@ -5,9 +5,32 @@
 Camp Buddy Dialog Extractor is a tool that extracts dialog from Camp Buddy and Camp Buddy Scoutmasters Edition.
 It can also be embedded inside another program sa library.
 
-# How to Use:
+# Command Line Usage
+```
+usage: cb_dialog_extractor.py [-h] [-r EXCLUDE_ROLEPLAY_DIALOGS] [-e EXPORT_TO_FILE] [-d DESTINATION_FILE] [-D DESTINATION_DIRECTORY]<br>
+                              [-H [HEADER [HEADER ...]]] [-m DELIMETER] [-v VERBOSE_LEVEL]<br>
+                              source_directory game [chosen_chars [chosen_chars ...]]<br>
+```
 
-## As a Library:
+### Options
+| Positional Argument | Description                                        |
+|---------------------|----------------------------------------------------|
+| source_directory    | Folder Containing .rpy Files                       |
+| game                | 1 = Camp Buddy 2 = Camp Buddy Scoutmasters Edition |
+| chosen_chars        | Characters to extract dialogs of                   |
+
+| Optional Argument                                                                | Description                                                                                                                                                                                                                                                                               |
+|----------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -h, --help                                                                       | show this help message and exit                                                                                                                                                                                                                                                           |
+| -r EXCLUDE_ROLEPLAY_DIALOGS, --exclude_roleplay_dialogs EXCLUDE_ROLEPLAY_DIALOGS | Exclude roleplay dialogs  (default: True)                                                                                                                                                                                                                                                 |
+| -e EXPORT_TO_FILE, --export_to_file EXPORT_TO_FILE                               | Export the dialogs to file. If False then dialogs would be exported to directory (default: True)                                                                                                                                                                                          |
+| -d DESTINATION_FILE, --destination_file DESTINATION_FILE                         | Export destination file path. Used if export_to_file is True. Ignored if export_to_file is False (default: None)                                                                                                                                                                          |
+| -D DESTINATION_DIRECTORY, --destination_directory DESTINATION_DIRECTORY          | Export destination directory. Used if export_to_file is False. Ignored if export_to_file is True (default: None)                                                                                                                                                                          |
+| -H [HEADER [HEADER ...]], --header [HEADER [HEADER ...]]                         | Header columns (default: ['name', 'dialog'])                                                                                                                                                                                                                                              |
+| -m DELIMETER, --delimeter DELIMETER                                              | Symbol to separate the character name and their dialog (default: ;)                                                                                                                                                                                                                       |
+| -v VERBOSE_LEVEL, --verbose_level VERBOSE_LEVEL                                  | 0 = no output to terminal 1 = shows message when dialogs extraction has started and finished and where it was saved 2 = shows the percentage progress and the current file being worked on 3 = shows the character name and their dialog in real time as they get extracted  (default: 2) |
+
+# Library Usage:
 ### Extract Keitaro's dialogs from Camp Buddy:
 ```
 cbdialogextractor = CBDialogExtractor(source_directory='folder that contains .rpy files', game=1, chosen_chars=['k'], destination_file='Taiga_Dialogs.csv')
