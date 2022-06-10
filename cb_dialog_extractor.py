@@ -130,15 +130,24 @@ class CBDialogExtractor:
             # And as such an error would occur if someone were to extract
             # their dialogs using their alias.
         }
+        self.game_aliases = {
+            1: 'Camp Buddy',
+            2: 'Camp Buddy Scoutmasters Edition'
+        }
         # DIALOGS WOULD BE STORED HERE
         self.dialogs = {
             1: {},  # Camp Buddy
             2: {}   # Camp Buddy Scoutmasters Edition
         }
-        self.total_amount_of_files = 0
+        self.total_amount_of_rpyfiles = 0
+        self.total_amount_of_dialogs = 0
+        self.stats = {}
+        self.stats_str = ''
+
         self.valid_parameters()
 
     def log(self, message: str, verbose_level_of_message: int) -> None:
+        '''Prints the status of the extractor to stdout'''
         if self.verbose_level == 1 and verbose_level_of_message == 1:
             print(message)
         elif self.verbose_level == 2:
@@ -174,11 +183,17 @@ class CBDialogExtractor:
             raise ValueError('Header columns must be 2')
 
     def calculate_progress(self, current_file_num: int) -> tuple:
-        percentage = current_file_num / self.total_amount_of_files
+        percentage = current_file_num / self.total_amount_of_rpyfiles
         percentage *= 100
         percentage = round(percentage, 2)
         int_percentage = int(percentage)
         return percentage, int_percentage
+
+    def calculate_dialog_part_stats(self, part_num: int):
+        percentage = part_num / self.total_amount_of_dialogs
+        percentage *= 100
+        percentage = round(percentage, 2)
+        return percentage
     
     def get_filename_from_path(self, rpapath: str) -> str:
         return ntpath.basename(rpapath)
@@ -197,6 +212,7 @@ class CBDialogExtractor:
         for file in os.listdir(self.source_directory):
             if file.endswith(f'.rpy'):
                 filepaths.append(self.get_absolute_file_path(self.source_directory, file))
+        self.total_amount_of_rpyfiles = len(filepaths)
         return filepaths
 
     def strip_newline_from_text_lines(self, text_lines: list) -> list:
@@ -254,6 +270,9 @@ class CBDialogExtractor:
                             message=f'[{percentage}%] [{self.get_filename_from_path(rpyfilepath)}] {self.chars_aliases[char]}: {dialog[0]}',
                             verbose_level_of_message=3
                         )
+
+                        # ADD THE TOTAL AMOUNT OF DIALOG LINES
+                        self.total_amount_of_dialogs += 1
             except:
                 pass
 
@@ -289,14 +308,30 @@ class CBDialogExtractor:
 
         file.close()    # Close the file
 
+    def get_stats(self):
+        self.stats = {
+            'Game': self.game_aliases[self.game],
+            'Total .rpy Files': self.total_amount_of_rpyfiles,
+            'Total Dialog Lines': self.total_amount_of_dialogs,
+        }
+
+        for char in self.dialogs[self.game]:
+            char_lines = len(self.dialogs[self.game][char])
+            char_percentage = self.calculate_dialog_part_stats(char_lines)
+            self.stats[f'{self.chars_aliases[char]} Dialog Count'] = char_lines
+            self.stats[f'{self.chars_aliases[char]} Dialog Percentage'] = f'{char_percentage}%'
+        
+        message = ''
+        for key in self.stats.keys(): 
+            message += f'{key}: {self.stats[key]}\n'
+        self.stats_str = message
+
+        return self.stats
+
     def extract(self) -> None:
         '''Main Method'''
         rpyfilepaths = self.get_file_paths()
-        self.total_amount_of_files = len(rpyfilepaths)
 
-        self.log(
-            message=f'Found {self.total_amount_of_files} .rpy files from directory: "{self.source_directory}"',
-            verbose_level_of_message=1)
         self.log(message='Starting dialog extraction...\n', verbose_level_of_message=1)
 
         current_file_num = 1
@@ -312,9 +347,13 @@ class CBDialogExtractor:
             self.export_dialogs_to_file()
         else:
             self.export_dialogs_to_directory()
+
         self.log(
                 message=f'\nFinished extracting dialogs, it has been saved to: "{self.destination_file if self.export_to_file else self.destination_directory}"',
                 verbose_level_of_message=1)
+
+        self.get_stats()
+        self.log(message=f'\n{self.stats_str}', verbose_level_of_message=1)
 
 def execute_as_script():
     # FOR COMMAND LINE EXECUTION!
