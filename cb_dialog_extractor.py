@@ -2,6 +2,8 @@ import os
 import ntpath
 import re
 import csv
+import argparse
+from pprint import pprint
 
 class CBDialogExtractor:
     '''
@@ -13,19 +15,19 @@ class CBDialogExtractor:
     param   game:                       1 = Camp Buddy, 2 = Camp Buddy Scoutmasters Edition
     type    game:                       (int)   
 
-    param   chosen_chars:               Characters to extract dialogs of. Refer to chars_aliases dictionary for the alias of each character.
+    param   chosen_chars:               Characters to extract dialogs of. Refer to chars_aliases dictionary for the alias of each character
     type    chosen_chars:               (list)
 
     param   exclude_roleplay_dialogs:   Exclude roleplay dialogs. Default is True
     type    exclude_roleplay_dialogs:   (bool)
 
-    param   export_to_file:             Export the dialogs to file. Default is True. If False then dialogs would be exported to directory.
+    param   export_to_file:             Export the dialogs to file. Default is True. If False then dialogs would be exported to directory
     type    export_to_file:             (bool)
 
-    param   destination_file:           Export destination file path. Used if export_to_file param is True. Ignored if export_to_file param is False.
+    param   destination_file:           Export destination file path. Used if export_to_file param is True. Ignored if export_to_file param is False
     type    destination_file:           (str)
 
-    param   destination_directory:      Export destination directory. Used if export_to_file param is False. Ignored if export_to_file param is True.
+    param   destination_directory:      Export destination directory. Used if export_to_file param is False. Ignored if export_to_file param is True
     type    destination_directory:      (str)
 
     param   header:                     Header columns. Default is ['name', 'dialog']
@@ -37,7 +39,7 @@ class CBDialogExtractor:
     param   verbose_level:              0 = no output to terminal, 1 = shows message when dialogs extraction has started and finished and where it was saved, 2 = shows the percentage progress and the current file being worked on, 3 = shows the character name and their dialog in real time as they get extracted. Default is 2
     type    verbose_level:              (int)
 
-    param   cb_toolbox_window:          Camp Buddy Toolbox PySimpleGUI Window object. Only used when embedded in Camp Buddy Toolbox program. Default is None.
+    param   cb_toolbox_window:          Camp Buddy Toolbox PySimpleGUI Window object. Only used when embedded in Camp Buddy Toolbox program. Default is None
     type    cb_toolbox_window:          (object)
     '''
 
@@ -161,10 +163,10 @@ class CBDialogExtractor:
             if char not in self.chars_aliases:
                 raise ValueError("Chosen game character alias doesn't exist in character aliases")
         if self.export_to_file == True:
-            if len(self.destination_file) == 0:
+            if self.destination_file == None:
                 raise ValueError('Destination file not specified')
         elif self.export_dialogs_to_directory:
-            if len(self.destination_directory) == 0:
+            if self.destination_directory == None:
                 raise ValueError('Destination directory not specified')
         if len(self.delimeter) > 1:
             raise ValueError('Only one character is allowed as delimeter')
@@ -313,3 +315,39 @@ class CBDialogExtractor:
         self.log(
                 message=f'\nFinished extracting dialogs, it has been saved to: "{self.destination_file if self.export_to_file else self.destination_directory}"',
                 verbose_level_of_message=1)
+
+def execute_as_script():
+    # FOR COMMAND LINE EXECUTION!
+
+    parser = argparse.ArgumentParser(
+                description='Extracts character dialogs from Camp Buddy & Camp Buddy Scoutmasters Edition',
+                formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+
+    parser.add_argument('source_directory', type=str, help='Folder Containing .rpy Files')
+    parser.add_argument('game', type=int, help='1 = Camp Buddy, 2 = Camp Buddy Scoutmasters Edition')
+    parser.add_argument('chosen_chars', help='Characters to extract dialogs of', type=str, nargs='*')
+    parser.add_argument('-r', '--exclude_roleplay_dialogs', default=True, help='Exclude roleplay dialogs')
+    parser.add_argument('-e', '--export_to_file', type=bool, default=True, help='Export the dialogs to file. If False then dialogs would be exported to directory.')
+    parser.add_argument('-d', '--destination_file', help='Export destination file path. Used if export_to_file is True. Ignored if export_to_file is False.')
+    parser.add_argument('-D', '--destination_directory', help='Export destination directory. Used if export_to_file is False. Ignored if export_to_file is True.')
+    parser.add_argument('-H', '--header', type=str, nargs='*', default=['name', 'dialog'], help='Header columns')
+    parser.add_argument('-m', '--delimeter', type=str, default=';', help='Symbol to separate the character name and their dialog')
+    parser.add_argument('-v', '--verbose_level', type=int, default=2, help='0 = no output to terminal, 1 = shows message when dialogs extraction has started and finished and where it was saved, 2 = shows the percentage progress and the current file being worked on, 3 = shows the character name and their dialog in real time as they get extracted')
+
+    args = parser.parse_args()
+    config = vars(args)
+
+    cb_dialog_extractor = CBDialogExtractor(
+        config['source_directory'], 
+        config['game'], 
+        config['chosen_chars'], 
+        config['exclude_roleplay_dialogs'],
+        config['export_to_file'],
+        config['destination_file'], 
+        config['destination_directory'], 
+        config['header'], 
+        config['delimeter'], 
+        config['verbose_level'])
+    cb_dialog_extractor.extract()
+
+execute_as_script()
