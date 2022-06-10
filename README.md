@@ -5,6 +5,29 @@
 Camp Buddy Dialog Extractor is a tool that extracts dialog from Camp Buddy and Camp Buddy Scoutmasters Edition.
 It can also be embedded inside another program sa library.
 
+# Character Aliases
+### This is what will be put in the chosen_chars argument. You may pick as many as you want.
+
+I only included the characters that would make sense for someone to get the dialogs of.
+Character aliases such as 'all' and 'Aiden & Goro' are not included here.
+
+An error would occur if someone were to extract a character who's alias is not included here.
+
+| Character | Alias |  | Character | Alias |  | Character | Alias |  | Character | Alias |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Aiden | a |  | Natsumi | n |  | Felix | f |  | Keitaro | k |
+| Andre | u |  | Naoto | na |  | Eduard | e |  | Hunter | hu |
+| Goro | g |  | Guest | nag |  | Lee | l |  | Hiro | h |
+| Yoshinori | yo |  | Stripper | nas |  | Conductor | con |  | Vera | v |
+| Yuri | yu |  | Bellboy | r |  | Rayne | ra |  | William | w |
+| Lloyd | l |  | Masseur | m |  | Toshu | to |  | Architect | ar |
+| Darius | d |  | Bartender | bt |  | Ichiru | ic |  | Hina | hm |
+| Hyunjin | j |  | Reimond | r |  | Connor | co |  | Yuki | k |
+| Emilia | e |  | Justine | ju |  | Jirou | ji |  | Heather | he |
+| Yoichi | yi |  | Officiator | o |  | Avan | ha |  | Archer | ar |
+| Taiga | t |  | Doctor | ol |  | Yuuto | yt |  | Kieran | ki |
+| Haruki | hr |  | Noah | no |  | Chiaki | ch |  |  |  |
+
 # Command Line Usage
 ```
 usage: cb_dialog_extractor.py [-h] [-r EXCLUDE_ROLEPLAY_DIALOGS] [-e EXPORT_TO_FILE] [-d DESTINATION_FILE] [-D DESTINATION_DIRECTORY]
