@@ -11,6 +11,27 @@ usage: cb_dialog_extractor.py [-h] [-r EXCLUDE_ROLEPLAY_DIALOGS] [-e EXPORT_TO_F
                               [-H [HEADER [HEADER ...]]] [-m DELIMETER] [-v VERBOSE_LEVEL]
                               source_directory game [chosen_chars [chosen_chars ...]]
 ```
+##  Examples
+### Extract Keitaro's dialogs from Camp Buddy:
+```
+python3 ./cb_dialog_extractor.py "/path/to/folder" 1 k --destination_file "/path/to/dialog.csv"
+```
+### Extract Taiga's dialogs from Camp Buddy:
+```
+python3 ./cb_dialog_extractor.py "/path/to/folder" 1 t --destination_file "/path/to/dialog.csv"
+```
+### Extract Taiga and Keitaro dialogs from Camp Buddy:
+```
+python3 ./cb_dialog_extractor.py "/path/to/folder" 1 k t --destination_file "/path/to/dialog.csv"
+```
+### Extract Yoshinori's dialogs from Camp Buddy Scoutmasters Edition:
+```
+python3 ./cb_dialog_extractor.py "/path/to/folder" 2 yo --destination_file "/path/to/dialog.csv"
+```
+### Extract Yoshinori and Aiden dialogs from Camp Buddy Scoutmasters Edition:
+```
+python3 ./cb_dialog_extractor.py "/path/to/folder" 2 yo a --destination_file "/path/to/dialog.csv"
+```
 
 ### Options
 | Positional Argument | Description                                        |
@@ -40,36 +61,36 @@ cbdialogextractor.extract()
 ### Extract Taiga's dialogs from Camp Buddy:
 ```
 cbdialogextractor = CBDialogExtractor(
-                        source_directory='folder that contains .rpy files', 
+                        source_directory='/path/to/folder', 
                         game=1, chosen_chars=['t'], 
-                        destination_file='Taiga_Dialogs.csv')
+                        destination_file='/path/to/dialog.csv')
 
 cbdialogextractor.extract()
 ```
 ### Extract Taiga and Keitaro dialogs from Camp Buddy:
 ```
 cbdialogextractor = CBDialogExtractor(
-                        source_directory='folder that contains .rpy files', 
+                        source_directory='/path/to/folder', 
                         game=1, chosen_chars=['k','t'], 
-                        destination_file='Keitaro_&_Taiga_Dialogs.csv')
+                        destination_file='/path/to/dialog.csv')
 
 cbdialogextractor.extract()
 ```
 ### Extract Yoshinori's dialogs from Camp Buddy Scoutmasters Edition:
 ```
 cbdialogextractor = CBDialogExtractor(
-                        source_directory='folder that contains .rpy files', 
+                        source_directory='/path/to/folder', 
                         game=2, chosen_chars=['yo'], 
-                        destination_file='Yoshinori_Dialogs.csv')
+                        destination_file='/path/to/dialog.csv')
 
 cbdialogextractor.extract()
 ```
 ### Extract Yoshinori and Aiden dialogs from Camp Buddy Scoutmasters Edition:
 ```
 cbdialogextractor = CBDialogExtractor(
-                        source_directory='folder that contains .rpy files', 
+                        source_directory='/path/to/folder', 
                         game=2, chosen_chars=['yo', 'a'], 
-                        destination_file='Yoshinori_&_Aiden_Dialogs.csv')
+                        destination_file='/path/to/dialog.csv')
 
 cbdialogextractor.extract()
 ```
