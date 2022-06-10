@@ -6,7 +6,7 @@ Camp Buddy Dialog Extractor is a tool that extracts dialog from Camp Buddy and C
 It can also be embedded inside another program sa library.
 
 # Character Aliases
-Use these in chosen_chars argument. You may pick as many as you want as illustrated in the examples after this section.
+Use these in chosen_chars parameter. You may pick as many as you want as illustrated in the examples after this section.
 
 I only included the characters that would make sense for someone to get the dialogs of.
 Character aliases such as 'all' and 'Aiden & Goro' are not included here.
