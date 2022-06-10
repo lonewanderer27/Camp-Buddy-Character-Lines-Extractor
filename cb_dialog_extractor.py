@@ -148,6 +148,7 @@ class CBDialogExtractor:
 
     def log(self, message: str, verbose_level_of_message: int) -> None:
         '''Prints the status of the extractor to stdout'''
+
         if self.verbose_level == 1 and verbose_level_of_message == 1:
             print(message)
         elif self.verbose_level == 2:
@@ -187,6 +188,7 @@ class CBDialogExtractor:
 
     def calculate_progress(self, current_file_num: int) -> tuple:
         '''Returns the current progress percentage'''
+
         percentage = current_file_num / self.total_amount_of_rpyfiles
         percentage *= 100
         percentage = round(percentage, 2)
@@ -195,6 +197,7 @@ class CBDialogExtractor:
 
     def calculate_dialog_part_stats(self, part_num: int) -> float:
         '''Returns the percentage of a character dialog in stats'''
+
         percentage = part_num / self.total_amount_of_dialogs
         percentage *= 100
         percentage = round(percentage, 2)
@@ -316,6 +319,7 @@ class CBDialogExtractor:
 
     def get_stats(self) -> tuple:
         '''Returns the stats'''
+
         self.stats = {
             'Game': self.game_aliases[self.game],
             'Total .rpy Files': self.total_amount_of_rpyfiles,
@@ -337,6 +341,7 @@ class CBDialogExtractor:
 
     def extract(self) -> None:
         '''Main Method'''
+
         rpyfilepaths = self.get_file_paths()
 
         self.log(message='\nStarting dialog extraction...', verbose_level_of_message=1)
@@ -369,7 +374,6 @@ def execute_as_script():
     
     Do not use this function in a program, construct an object from class CBDialogExtractor then extract()
     '''
-    # FOR COMMAND LINE EXECUTION!
 
     parser = argparse.ArgumentParser(
                 description='Extracts character dialogs from Camp Buddy & Camp Buddy Scoutmasters Edition',
