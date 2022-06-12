@@ -410,7 +410,7 @@ class CBDialogExtractor:
         if self.show_stats:
             self.log(message=f'\n{self.stats_str}', verbose_level_of_message=1)
 
-        return
+        return self.stats
 
 def execute_as_script():
     '''
