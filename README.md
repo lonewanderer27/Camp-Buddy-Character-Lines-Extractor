@@ -77,6 +77,7 @@ python3 ./cb_dialog_extractor.py "/path/to/folder" 2 yo a --destination_file "/p
 | -H, --header | Header columns (default: ['name', 'dialog']) |
 | -m, --delimeter | Symbol to separate the character name and their dialog (default: ;) |
 | -v, --verbose_level | 0 = no output to terminal<br>1 = shows message when dialogs extraction has started and finished and where it was saved<br>2 = shows the percentage progress and the current file being worked on<br>3 = shows the character name and their dialog in real time as they get extracted<br><br>(default: 2) |
+| -s, --show_stats | At the end of extraction, show the stats detailing the amount of .rpy files processed and total dialog lines per character are exported (default: True) |
 
 # Library Usage:
 ### Extract Keitaro's dialogs from Camp Buddy:
@@ -135,4 +136,5 @@ cbdialogextractor.extract()
 | header                   | list   | Header columns. Default is ['name', 'dialog']                                                                                                                                                                                                                                                              |
 | delimeter                | str    | Symbol to separate the character name and their dialog. Default is ;                                                                                                                                                                                                                                       |
 | verbose_level            | int    | 0 = no output to terminal<br>1 = shows message when dialogs extraction has started and finished and where it was saved<br>2 = shows the percentage progress and the current file being worked on<br>3 = shows the character name and their dialog in real time as they get extracted. <br><br>Default is 2 |
+| show_stats               | bool   | At the end of extraction, show the stats detailing the amount of .rpy files processed and total dialog lines per character are exported   |
 | cb_toolbox_window        | object | Camp Buddy Toolbox PySimpleGUI Window object. Only used when embedded in Camp Buddy Toolbox program<br>Default is None                                                                                                                                                                                     |
