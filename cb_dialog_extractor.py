@@ -41,6 +41,9 @@ class CBDialogExtractor:
     param   verbose_level:              0 = no output to terminal, 1 = shows message when dialogs extraction has started and finished and where it was saved, 2 = shows the percentage progress and the current file being worked on, 3 = shows the character name and their dialog in real time as they get extracted. Default is 2
     type    verbose_level:              (int)
 
+    param   show_stats:                 At the end of extraction, show the stats detailing the amount of .rpy files processed and total dialog lines per character are exported. Default is True
+    type    show_stats:                 (bool)
+
     param   cb_toolbox_window:          Camp Buddy Toolbox PySimpleGUI Window object. Only used when embedded in Camp Buddy Toolbox program. Default is None
     type    cb_toolbox_window:          (object)
     '''
@@ -56,6 +59,7 @@ class CBDialogExtractor:
         destination_directory = str,
         header = ['name', 'dialog'],
         delimeter = ';',
+        show_stats = True,
         verbose_level = 2,
         cb_toolbox_window = None
     ) -> None:
@@ -69,6 +73,7 @@ class CBDialogExtractor:
         self.destination_directory = destination_directory
         self.header = header
         self.delimeter = delimeter
+        self.show_stats = show_stats
         self.verbose_level = verbose_level
         self.chars_aliases = {
             # Camp Buddy Scoutmasters Edition Character Aliases
@@ -321,7 +326,7 @@ class CBDialogExtractor:
         file.close()    # CLOSE THE FILE
 
     def get_stats(self) -> tuple:
-        '''Returns the stats'''
+        '''Returns the stats that show the amount of .rpy files, and total dialog lines per character.'''
 
         self.stats = {
             'Game': self.game_aliases[self.game],
@@ -368,7 +373,8 @@ class CBDialogExtractor:
                 verbose_level_of_message=1)
 
         self.get_stats()
-        self.log(message=f'\n{self.stats_str}', verbose_level_of_message=1)
+        if self.show_stats:
+            self.log(message=f'\n{self.stats_str}', verbose_level_of_message=1)
 
 def execute_as_script():
     '''
@@ -378,37 +384,46 @@ def execute_as_script():
     Do not use this function in a program, construct an object from CBDialogExtractor class then execute extract()
     '''
 
-    parser = argparse.ArgumentParser(
-                description='Extracts character dialogs from Camp Buddy & Camp Buddy Scoutmasters Edition',
-                formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    if __name__ == '__main__':
 
-    parser.add_argument('source_directory', type=str, help='Folder Containing .rpy Files')
-    parser.add_argument('game', type=int, help='1 = Camp Buddy, 2 = Camp Buddy Scoutmasters Edition')
-    parser.add_argument('chosen_chars', help='Characters to extract dialogs of', type=str, nargs='*')
-    parser.add_argument('-r', '--exclude_roleplay_dialogs', default=True, type=lambda x: (str(x).lower() == 'true'), help='Exclude roleplay dialogs')
-    parser.add_argument('-e', '--export_to_file', default=True, type=lambda x: (str(x).lower() == 'true'), help='Export the dialogs to file. If False then dialogs would be exported to directory.')   
-    parser.add_argument('-d', '--destination_file', help='Export destination file path. Used if export_to_file is True. Ignored if export_to_file is False.')
-    parser.add_argument('-D', '--destination_directory', help='Export destination directory. Used if export_to_file is False. Ignored if export_to_file is True.')
-    parser.add_argument('-H', '--header', type=str, nargs='*', default=['name', 'dialog'], help='Header columns')
-    parser.add_argument('-m', '--delimeter', type=str, default=';', help='Symbol to separate the character name and their dialog')
-    parser.add_argument('-v', '--verbose_level', type=int, default=2, help='0 = no output to terminal, 1 = shows message when dialogs extraction has started and finished and where it was saved, 2 = shows the percentage progress and the current file being worked on, 3 = shows the character name and their dialog in real time as they get extracted')
+        parser = argparse.ArgumentParser(
+                    description='Extracts character dialogs from Camp Buddy & Camp Buddy Scoutmasters Edition',
+                    formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    args = parser.parse_args()
-    config = vars(args)
-    pprint(config, indent=2)
+        parser.add_argument('source_directory', type=str, help='Folder Containing .rpy Files')
+        parser.add_argument('game', type=int, help='1 = Camp Buddy, 2 = Camp Buddy Scoutmasters Edition')
+        parser.add_argument('chosen_chars', help='Characters to extract dialogs of', type=str, nargs='*')
+        parser.add_argument('-r', '--exclude_roleplay_dialogs', default=True, type=lambda x: (str(x).lower() == 'true'), help='Exclude roleplay dialogs')
+        parser.add_argument('-e', '--export_to_file', default=True, type=lambda x: (str(x).lower() == 'true'), help='Export the dialogs to file. If False then dialogs would be exported to directory.')   
+        parser.add_argument('-d', '--destination_file', help='Export destination file path. Used if export_to_file is True. Ignored if export_to_file is False.')
+        parser.add_argument('-D', '--destination_directory', help='Export destination directory. Used if export_to_file is False. Ignored if export_to_file is True.')
+        parser.add_argument('-H', '--header', type=str, nargs='*', default=['name', 'dialog'], help='Header columns')
+        parser.add_argument('-m', '--delimeter', type=str, default=';', help='Symbol to separate the character name and their dialog')
+        parser.add_argument('-s', '--show_stats', default=True, type=lambda x: (str(x).lower() == 'true'), help='At the end of extraction, show the stats detailing the amount of .rpy files processed and total dialog lines per character are exported.')   
+        parser.add_argument('-v', '--verbose_level', type=int, default=2, help='0 = no output to terminal, 1 = shows message when dialogs extraction has started and finished and where it was saved, 2 = shows the percentage progress and the current file being worked on, 3 = shows the character name and their dialog in real time as they get extracted')
 
-    cb_dialog_extractor = CBDialogExtractor(
-        config['source_directory'], 
-        config['game'], 
-        config['chosen_chars'], 
-        config['exclude_roleplay_dialogs'],
-        config['export_to_file'],
-        config['destination_file'], 
-        config['destination_directory'], 
-        config['header'], 
-        config['delimeter'], 
-        config['verbose_level'])
+        args = parser.parse_args()
+        config = vars(args)
+        # pprint(config, indent=2)
 
-    cb_dialog_extractor.extract()
+        cb_dialog_extractor = CBDialogExtractor(
+            config['source_directory'], 
+            config['game'], 
+            config['chosen_chars'], 
+            config['exclude_roleplay_dialogs'],
+            config['export_to_file'],
+            config['destination_file'], 
+            config['destination_directory'], 
+            config['header'], 
+            config['delimeter'], 
+            config['show_stats'],
+            config['verbose_level'])
+
+        cb_dialog_extractor.extract()
+
+    else:
+        
+        print(f'{__name__}: {execute_as_script.__doc__}')
+        return
 
 execute_as_script()
