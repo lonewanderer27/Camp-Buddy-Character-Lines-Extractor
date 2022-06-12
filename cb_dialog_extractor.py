@@ -176,6 +176,9 @@ class CBDialogExtractor:
     ):
         self.window.write_event_value('-update_status-', f"[{file_number / float(total_files):04.2%}] {name:>3}")
 
+    def send_stats(self):
+        self.window.write_event_value('-ed_done_stats-', self.stats)
+
 
 
     def log(self, message: str, verbose_level_of_message: int) -> None:
@@ -363,7 +366,6 @@ class CBDialogExtractor:
         '''Returns the stats that show the amount of .rpy files, and total dialog lines per character.'''
 
         self.stats = {
-            'Game': self.game_aliases[self.game],
             'Total .rpy Files': self.total_amount_of_rpyfiles,
             'Total Dialog Lines': self.total_amount_of_dialogs
         }
@@ -408,7 +410,7 @@ class CBDialogExtractor:
 
         self.get_stats()
         if self.show_stats:
-            self.log(message=f'\n{self.stats_str}', verbose_level_of_message=1)
+            self.log(message=f'{self.game_aliases[self.game]}\n{self.stats_str}', verbose_level_of_message=1)
 
         return self.stats
 
