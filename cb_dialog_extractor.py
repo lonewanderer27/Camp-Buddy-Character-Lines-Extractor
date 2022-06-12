@@ -189,6 +189,7 @@ class CBDialogExtractor:
         elif self.verbose_level == 3:
             if verbose_level_of_message == 3 or verbose_level_of_message == 1:
                 print(message)
+        return
 
     def valid_parameters(self) -> bool:
         '''Raises ValueError when one of the parameters are invalid'''
@@ -312,15 +313,16 @@ class CBDialogExtractor:
                             verbose_level_of_message=3
                         )
 
-                        # IF CAMP BUDDY TOOLBOX PYSIMPLEGUI WINDOW OBJECT IS PASSED TO THE CONSTRUCTOR, WE UPDATE THE PROGRESS
-                        if self.window != None:
-                            self.update_status(self.get_filename_from_path(rpyfilepath), current_file_num, self.total_amount_of_rpyfiles)
-                            self.update_progress(current_file_num, self.total_amount_of_rpyfiles)
-
                         # ADD THE TOTAL AMOUNT OF DIALOG LINES
                         self.total_amount_of_dialogs += 1
             except:
                 pass
+
+        # IF CAMP BUDDY TOOLBOX PYSIMPLEGUI WINDOW OBJECT IS PASSED TO THE CONSTRUCTOR, WE UPDATE THE PROGRESS
+        if self.window != None:
+            self.update_status(self.get_filename_from_path(rpyfilepath), current_file_num, self.total_amount_of_rpyfiles)
+            self.update_progress(current_file_num, self.total_amount_of_rpyfiles)
+        return
 
     def export_dialogs_to_directory(self) -> None:
         '''Exports the dialogs to individual csv files to a destination directory'''
@@ -338,6 +340,7 @@ class CBDialogExtractor:
                     writer.writerow([self.chars_aliases[char], dialog])     # WRITE THE CHARACTER'S NAME THEN THE DIALOG IN THE ROW
 
             file.close()    # CLOSE THE FILE
+        return
 
     def export_dialogs_to_file(self) -> None:
         '''Exports dialogs to a destination csv file'''
@@ -354,6 +357,7 @@ class CBDialogExtractor:
                     writer.writerow([self.chars_aliases[char], dialog])     # WRITE THE CHARACTER'S NAME THEN THE DIALOG IN THE ROW
 
         file.close()    # CLOSE THE FILE
+        return
 
     def get_stats(self) -> tuple:
         '''Returns the stats that show the amount of .rpy files, and total dialog lines per character.'''
@@ -405,6 +409,8 @@ class CBDialogExtractor:
         self.get_stats()
         if self.show_stats:
             self.log(message=f'\n{self.stats_str}', verbose_level_of_message=1)
+
+        return
 
 def execute_as_script():
     '''
