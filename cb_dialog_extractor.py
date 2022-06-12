@@ -61,7 +61,7 @@ class CBDialogExtractor:
         delimeter = ';',
         show_stats = True,
         verbose_level = 2,
-        cb_toolbox_window = None
+        cb_toolbox_window = None,
     ) -> None:
         self.window = cb_toolbox_window
         self.source_directory = source_directory
@@ -152,6 +152,31 @@ class CBDialogExtractor:
         self.stats_str = ''                 # STATS IN STRING FORM
 
         self.valid_parameters()             # CHECKS IF THE PARAMETERS ARE VALID
+
+
+    # FUNCTIONS THAT SEND PROGRESS TO CAMP BUDDY TOOL
+
+    def update_progress(
+        self, 
+        file_number: int, 
+        total_files: int
+    ):
+        percentage = file_number / total_files
+        percentage = round(percentage, 4)
+        percentage *= 100
+        int_percentage = int(percentage)
+        self.window.write_event_value('-update_progress_bar-', int_percentage)
+        self.window.write_event_value('-update_progress_percentage-', f'{file_number / float(total_files):04.2%}')
+
+    def update_status(
+            self,
+            name: str,
+            file_number: int,
+            total_files: int
+    ):
+        self.window.write_event_value('-update_status-', f"[{file_number / float(total_files):04.2%}] {name:>3}")
+
+
 
     def log(self, message: str, verbose_level_of_message: int) -> None:
         '''Prints the status of the extractor to stdout'''
@@ -286,6 +311,11 @@ class CBDialogExtractor:
                             message=f'[{percentage}%] [{self.get_filename_from_path(rpyfilepath)}] {self.chars_aliases[char]}: {dialog[0]}',
                             verbose_level_of_message=3
                         )
+
+                        # IF CAMP BUDDY TOOLBOX PYSIMPLEGUI WINDOW OBJECT IS PASSED TO THE CONSTRUCTOR, WE UPDATE THE PROGRESS
+                        if self.window != None:
+                            self.update_status(self.get_filename_from_path(rpyfilepath), current_file_num, self.total_amount_of_rpyfiles)
+                            self.update_progress(current_file_num, self.total_amount_of_rpyfiles)
 
                         # ADD THE TOTAL AMOUNT OF DIALOG LINES
                         self.total_amount_of_dialogs += 1
