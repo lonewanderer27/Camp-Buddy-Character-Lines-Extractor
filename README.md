@@ -41,23 +41,23 @@ usage: cb_dialog_extractor.py [-h] [-r EXCLUDE_ROLEPLAY_DIALOGS] [-e EXPORT_TO_F
 ##  Examples
 ### Extract Keitaro's dialogs from Camp Buddy:
 ```
-python3 ./cb_dialog_extractor.py "/path/to/folder" 1 k --destination_file "/path/to/dialog.csv"
+cb_dialog_extractor.py "/path/to/folder" 1 k --destination_file "/path/to/dialog.csv"
 ```
 ### Extract Taiga's dialogs from Camp Buddy:
 ```
-python3 ./cb_dialog_extractor.py "/path/to/folder" 1 t --destination_file "/path/to/dialog.csv"
+cb_dialog_extractor.py "/path/to/folder" 1 t --destination_file "/path/to/dialog.csv"
 ```
 ### Extract Taiga and Keitaro dialogs from Camp Buddy:
 ```
-python3 ./cb_dialog_extractor.py "/path/to/folder" 1 k t --destination_file "/path/to/dialog.csv"
+cb_dialog_extractor.py "/path/to/folder" 1 k t --destination_file "/path/to/dialog.csv"
 ```
 ### Extract Yoshinori's dialogs from Camp Buddy Scoutmasters Edition:
 ```
-python3 ./cb_dialog_extractor.py "/path/to/folder" 2 yo --destination_file "/path/to/dialog.csv"
+cb_dialog_extractor.py "/path/to/folder" 2 yo --destination_file "/path/to/dialog.csv"
 ```
 ### Extract Yoshinori and Aiden dialogs from Camp Buddy Scoutmasters Edition:
 ```
-python3 ./cb_dialog_extractor.py "/path/to/folder" 2 yo a --destination_file "/path/to/dialog.csv"
+cb_dialog_extractor.py "/path/to/folder" 2 yo a --destination_file "/path/to/dialog.csv"
 ```
 
 ### Options
