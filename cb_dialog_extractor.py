@@ -154,7 +154,7 @@ class CBDialogExtractor:
         self.valid_parameters()             # CHECKS IF THE PARAMETERS ARE VALID
 
 
-    # FUNCTIONS THAT SEND PROGRESS TO CAMP BUDDY TOOL
+    # FUNCTIONS THAT SEND PROGRESS TO CAMP BUDDY TOOLBOX
 
     def update_progress(
         self, 
