@@ -1,13 +1,17 @@
-# Camp Buddy Dialog Extractor
+# Camp Buddy Dialog Extractor [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 # About
 
 Camp Buddy Dialog Extractor is a tool that extracts dialog from Camp Buddy and Camp Buddy Scoutmasters Edition.
 It can also be embedded inside another program by using its class.
 
+
+
 # Prerequisite
 Download and use [Shizmob's rpatool](https://github.com/Shizmob/rpatool) to extract Camp Buddy assets to a folder  <br>
 *<sub>you should end up with a folder full of .rpy files, we are going to be extracting the character dialogs from those files.</sub>*
+
+
 
 # Character Aliases
 Use these in chosen_chars parameter. You may pick as many as you want as illustrated in the examples after this section.
@@ -39,6 +43,8 @@ usage: cb_dialog_extractor.py [-h] [-r EXCLUDE_ROLEPLAY_DIALOGS] [-e EXPORT_TO_F
                               source_directory game [chosen_chars [chosen_chars ...]]
 ```
 
+
+
 ### Options
 | Positional Argument | Description                                        |
 |---------------------|----------------------------------------------------|
@@ -57,6 +63,8 @@ usage: cb_dialog_extractor.py [-h] [-r EXCLUDE_ROLEPLAY_DIALOGS] [-e EXPORT_TO_F
 | -m, --delimeter | Symbol to separate the character name and their dialog (default: ;) |
 | -v, --verbose_level | 0 = no output to terminal<br>1 = shows message when dialogs extraction has started and finished and where it was saved<br>2 = shows the percentage progress and the current file being worked on<br>3 = shows the character name and their dialog in real time as they get extracted<br><br>(default: 2) |
 | -s, --show_stats | At the end of extraction, show the stats detailing the amount of .rpy files processed and total dialog lines per character are exported (default: True) |
+
+
 
 ##  Examples
 ### Extract Keitaro's dialogs from Camp Buddy:
@@ -124,7 +132,9 @@ cbdialogextractor = CBDialogExtractor(
 cbdialogextractor.extract()
 ```
 
-### Class Parameters
+
+
+## Class Parameters
 | Parameter                | Type   | Description                                                                                                                                                                                                                                                                                                |
 |--------------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | source_directory         | str    | Folder Containing .rpy Files                                                                                                                                                                                                                                                                               |
@@ -139,3 +149,41 @@ cbdialogextractor.extract()
 | verbose_level            | int    | 0 = no output to terminal<br>1 = shows message when dialogs extraction has started and finished and where it was saved<br>2 = shows the percentage progress and the current file being worked on<br>3 = shows the character name and their dialog in real time as they get extracted. <br><br>Default is 2 |
 | show_stats               | bool   | At the end of extraction, show the stats detailing the amount of .rpy files processed and total dialog lines per character that are exported   |
 | cb_toolbox_window        | object | Camp Buddy Toolbox PySimpleGUI Window object. Only used when embedded in Camp Buddy Toolbox program<br>Default is None                                                                                                                                                                                     |
+
+
+<!-- LICENSE -->
+## License
+
+Camp Buddy Toolbox is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+Camp Buddy Toolbox is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+<!-- LEGAL NOTICE -->
+## Legal Notice
+                                
+<div id="legal">
+I created this program, as a fan of Camp Buddy, for others who are also a fan (like you) to be able to create your own Discord Chatbot and perhaps also look at the assets yourself.  
+  
+However having the tool doesn't mean you have the right to share any assets generated by this program including images, scripts, audios to others online (especially the ones who did not even paid for the game) without permission from the game developer and company.  
+
+By doing so, you're infringing on BLits Games Intellectual Property and you are subject to legal repercussions!
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+</div>
+
+
+
+<!-- CONTACT -->
+## Contact
+
+Adriane James - adrianejames27@gmail.com
+
+Project Link: [https://github.com/lonewanderer27/Camp-Buddy-Toolbox](https://github.com/lonewanderer27/Camp-Buddy-Toolbox)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
