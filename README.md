@@ -162,8 +162,6 @@ Camp Buddy Toolbox is distributed in the hope that it will be useful, but WITHOU
 
 You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 
 
 <!-- LEGAL NOTICE -->
