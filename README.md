@@ -22,14 +22,14 @@ An error would occur if someone were to extract a character who's alias is not i
 | Aiden | a |  | Natsumi | n |  | Felix | f |  | Keitaro | k |
 | Andre | u |  | Naoto | na |  | Eduard | e |  | Hunter | hu |
 | Goro | g |  | Guest | nag |  | Lee | l |  | Hiro | h |
-| Yoshinori | yo |  | Stripper | nas |  | Conductor | con |  | Vera | v |
+| Yoshinori | yo |  | Stripper | nas |  | Kieran | ki |  | Vera | v |
 | Yuri | yu |  | Bellboy | r |  | Rayne | ra |  | William | w |
 | Lloyd | l |  | Masseur | m |  | Toshu | to |  | Architect | ar |
 | Darius | d |  | Bartender | bt |  | Ichiru | ic |  | Hina | hm |
 | Hyunjin | j |  | Reimond | r |  | Connor | co |  | Yuki | k |
 | Emilia | e |  | Justine | ju |  | Jirou | ji |  | Heather | he |
 | Yoichi | yi |  | Officiator | o |  | Avan | ha |  | Archer | ar |
-| Taiga | t |  | Doctor | ol |  | Yuuto | yt |  | Kieran | ki |
+| Taiga | t |  | Doctor | ol |  | Yuuto | yt |  |  |  |
 | Haruki | hr |  | Noah | no |  | Chiaki | ch |  |  |  |
 
 # Command Line Usage
